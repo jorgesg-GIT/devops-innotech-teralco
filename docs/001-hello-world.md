@@ -167,11 +167,11 @@ Obtenga más información sobre las variables de entorno y las variables predete
 
 ## 4 - Make additional events trigger your workflow
 
-GitHub Acciones Los flujos de trabajo pueden ser activados por muchos tipos diferentes de eventos:
+GitHub Acciones Los Workflow pueden ser activados por muchos tipos diferentes de eventos:
 
 - [Events that trigger workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
 
-Modificemos nuestro flujo de trabajo para que también se ejecute automáticamente cada vez que se crea un problema en nuestro repositorio.Esta práctica se conoce comúnmente como "emisión".Para lograr esto, agregue lo siguiente a la sección 'on' del archivo de flujo de trabajo y confirme los cambios:
+Modificemos nuestro Workflow para que también se ejecute automáticamente cada vez que se crea un problema en nuestro repositorio.Esta práctica se conoce comúnmente como "emisión".Para lograr esto, agregue lo siguiente a la sección 'on' del archivo de Workflow y confirme los cambios:
 
 ```yml
 ...
@@ -184,7 +184,7 @@ on:
 ...
 ```
 
-Ahora cree un problema en su repositorio y verifique la pestaña Acciones.Deberías ver el flujo de trabajo ejecutado de la siguiente manera:
+Ahora cree un problema en su repositorio y verifique la pestaña Acciones.Deberías ver el Workflow ejecutado de la siguiente manera:
 
 ![image](https://user-images.githubusercontent.com/3329307/171652425-14a1ce9f-06c0-4b24-b937-7330c76c735f.png)
 
