@@ -1,37 +1,33 @@
-# Part 2 - Basics of CI with Actions
+# Parte 2: Conceptos básicos de CI con Actions
 
-## 1 - Inspect the repository
+## 1 -  Inspeccionar el repositorio
 
-This repository contains a [React](https://reactjs.org/)-based application built with [Vite](https://vitejs.dev/). We aim to automate its testing and building in this lab.
+Este repositorio contiene una aplicación basada en [React](https://reactjs.org/). Nuestro objetivo es automatizar sus pruebas y construcción en este laboratorio.
 
-Feel free to explore the files if you're curious about the app's operation (though it's not strictly necessary for understanding the remainder of the workshop).
+Siéntete libre de explorar los archivos si tienes curiosidad sobre el funcionamiento de la aplicación (aunque no es estrictamente necesario para comprender el resto del Workshop).
 
-- [`src/main.tsx`](../src/main.ts) : This is the main entry point of the application.
-- [`src/pages/Home.tsx`](../src/pages/Home.tsx) : This route contains most of what you will see upon launching the application.
-- [`src/pages/Home.test.ts`](../src/pages/Home.test.tsx) : Here, you will find [`vitest`](https://vitest.dev/) tests that we will run with GitHub Actions.
-- [`Dockerfile`](../Dockerfile) : This Docker file packages the application into a container that will be used later in this workshop.
+- [`src/main.tsx`](../src/main.ts) : Este es el principal punto de entrada de la aplicación.
+- [`src/pages/Home.tsx`](../src/pages/Home.tsx) : Esta ruta contiene la mayor parte de lo que verá al iniciar la aplicación.
+- [`src/pages/Home.test.ts`](../src/pages/Home.test.tsx) :  Aquí encontrará  [`vitest`](https://vitest.dev/) pruebas que ejecutaremos con GitHub Actions.
+- [`Dockerfile`](../Dockerfile) : Este archivo Docker empaqueta la aplicación en un contenedor que se utilizará más adelante en este Workshop.
 
-If you want to test the application, you can start a Codespace and run it with the command `npm run dev`
-(you can also run the tests with `npm test`). To run the application on your local machine, you will need to install Node.js first.
 
-To test the container, run `docker build . -t local:latest` to build the image and `docker run -p 8080:8080 local:latest` to run it. These commands require a local installation of [Docker](https://www.docker.com/).
+## 2 - Implementar Integración Continua (CI)
 
-## 2 - Implement Continuous Integration (CI)
+### 2.1 - Utilice un workflow inicial
 
-### 2.1 - Use a starter workflow
+Para crear un workflow que emplee Actions para su proceso de integración continua, comience agregando un **starter workflow** a su repositorio:
 
-To build a workflow that employs Actions for your Continuous Integration process, start by adding a **starter workflow** to your repository:
+1. Desde la vista principal de su repositorio, busque y navegue hasta la pestaña **Actions** .
+2. Seleccione **New workflow**.
+3. Buscar `Node.js`.
+4. Haga clic en **Configure** debajo del `Node.js` workflow inicial.
+5. En el `node-version` campo dentro de la configuración de YAML, elimine 14.x.
 
-1. From your repository's main view, find and navigate to the **Actions** tab.
-2. Select **New workflow**.
-3. Search for `Node.js`.
-4. Click **Configure** under the `Node.js` starter workflow.
-5. In the `node-version` field within the YAML configuration, remove `14.x` (since our app isn't compatible with this version).
-
-To finish setting up your initial CI workflow, commit the `node.js.yml` file to the `main` branch.
+Para terminar tu CI workflow, haz un commit del archivo `node.js.yml` a la rama `develop` .
 
 <details>
-<summary>Your `.github/workflows/node.js.yml` should contain the following:</summary>
+<summary>Tu archivo `.github/workflows/node.js.yml` debe contener lo siguiente:</summary>
 
 ```yml
 name: Node.js CI
@@ -65,29 +61,29 @@ jobs:
 
 </details>
 
-### 2.2 - Understanding references to actions
+### 2.2 - Comprender las referencias a Actions
 
-As you can see, we're now employing a second action in our workflow, `actions/setup-node`, which is used to install a specific Node.js version on the runner.
+Como puede ver, ahora estamos empleando una segunda acción en nuestro workflow, `actions/setup-node`, que se utiliza para instalar una versión específica de Node.js en el ejecutor.
 
-Let's dissect the reference to that action to understand its structure:
+Analicemos la referencia a esa acción para comprender su estructura:
 
-- `actions/` references the owner of the action, which is translated into a user or organization on GitHub.
-- `setup-node` refers to the name of the action, which corresponds to a repository on GitHub.
-- `@v3` represents the version of the action, which corresponds to a Git tag or a general reference (such as a branch or even a commit SHA) on the repository.
+- `actions/` hace referencia al propietario de la acción, que se traduce en un usuario u organización en GitHub.
+- `setup-node` hace referencia al nombre de la acción, que corresponde a un repositorio en GitHub.
+- `@v3`representa la versión de la acción, que corresponde a una etiqueta Git o una referencia general (como una rama o incluso un SHA de confirmación) en el repositorio.
 
-This reference structure makes it straightforward to navigate to the source code of any action by merely appending the `owner` and `name` to the `github.com` URL, like so: `https://github.com/{owner}/{name}`. For the above example, this would be <https://github.com/actions/setup-node>.
+Esta estructura de referencia hace que sea sencillo navegar hasta el código fuente de cualquier acción simplemente agregando `owner` y `name` a el `github.com` URL, asi: `https://github.com/{owner}/{name}`. Para el ejemplo anterior, sería <https://github.com/actions/setup-node>.
 
 ### 2.3 - Understanding matrix builds
 
-Observe that our workflow employs a [matrix build strategy](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) with two Node.js versions: 16 and 18. A matrix build enables you to execute a job in parallel using various input parameters. In our case, we're running the same job twice, but with distinct Node.js versions.
+Observe que nuestro workflow emplea una [matrix build strategy](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) con dos versiones de Node.js: 16 y 18. Una matrix build le permite ejecutar un trabajo en paralelo utilizando varios parámetros de entrada. En nuestro caso, ejecutamos el mismo trabajo dos veces, pero con distintas versiones de Node.js.
 
-### Checking workflow runs
+### Comprobación de ejecuciones de workflow
 
-Your newly implemented CI workflow now runs with every push. Given that you just pushed a new commit containing the workflow you've created, you should already have a workflow run in progress.
+Su workflow de CI recién implementado ahora se ejecuta con cada pulsación. Dado que acaba de enviar una nueva confirmación que contiene el workflow que creó, ya debería tener un workflow ejecutándose.
 
 ![Actions overview showing the Node.js workflow running](./images/running-nodejs-workflow.png)
 
-Keep in mind that we will need to run tests as part of our CI workflow. You can find most of this application's tests in the [`src/pages/Home.test.tsx`](../src/pages/Home.test.tsx) file, which partly looks like this:
+Tenga en cuenta que necesitaremos ejecutar pruebas como parte de nuestro workflow de CI. Puede encontrar la mayoría de las pruebas de esta aplicación en el [`src/pages/Home.test.tsx`](../src/pages/Home.test.tsx) archivo, que en parte se parece a esto:
 
 ```typescript
 // ... imports
@@ -116,46 +112,46 @@ describe("<Home />", (): void => {
 
 ```
 
-The result of your last push to the main branch should resemble the following:
+El resultado de su último push a la rama principal debería parecerse al siguiente:
 
 ![Actions overview showing a successful workflow run](./images/success-nodejs-workflow.png)
 
-## 3 - Add code coverage to your workflow
+## 3 - Añade cobertura de código a tu workflow
 
-When setting up CI for your project, it's common to provide additional information to users, such as code coverage stats for the project's tests.
+Al configurar CI para su proyecto, es común proporcionar información adicional a los usuarios, como estadísticas de cobertura de código para las pruebas del proyecto.
 
-Doing that is straightforward with GitHub Actions. You determine where and when a specific task should occur, and then search for an appropriate action in the [GitHub Marketplace](https://github.com/marketplace?category=&query=&type=actions&verification=).
+Hacerlo es sencillo con GitHub Actions. Usted determina dónde y cuándo debe realizarse una tarea específica y luego busca un Action adecuada en [GitHub Marketplace](https://github.com/marketplace?category=&query=&type=actions&verification=).
 
-### 3.1 - Find an action in the marketplace
+### 3.1 - Encuentra una acción en el mercado
 
-1. Search for an Action in the GitHub Marketplace:  `vitest coverage report`
+1. Busque un Action en  GitHub Marketplace:  `vitest coverage report`
   ![Search Result for "Vitest Test Coverage" in the GitHub Marketplace](./images/marketplace-vitest-search-result.png)
 
-2. Click on the **Vitest Coverage Report** action.
+2. Click en la action **Vitest Coverage Report**.
 
-3. Read the provided documentation and incorporate the action into your workflow.
+3.  incorpore la acción a su workflow.
 
-### 3.2 - Permissions in a workflow
+### 3.2 - Permisos en un workflow
 
-This is a good moment to discuss **permissions** within a workflow. Any workflow interacting with GitHub resources requires permissions to do so. By managing permissions, GitHub users can ensure that only authorized users or processes can carry out specific actions, like calling an API with a private access key, executing certain automations, or deploying to production environments. This prevents unauthorized access to sensitive data, reduces the risk of unintentional or malicious changes, and helps to uphold the overall security and stability of the codebase. For example:
+Este es un buen momento para discutir **permissions** dentro de un workflow. Cualquier workflow que interactúe con recursos de GitHub requiere permisos para hacerlo. Al administrar los permisos, los usuarios de GitHub pueden garantizar que solo los usuarios o procesos autorizados puedan realizar Actions específicas, como llamar a una API con una clave de acceso privada, ejecutar ciertas automatizaciones o implementar en entornos de producción. Esto evita el acceso no autorizado a datos confidenciales, reduce el riesgo de cambios no intencionados o maliciosos y ayuda a mantener la seguridad y estabilidad generales del código base. Por ejemplo:
 
-1. The `actions/checkout` action requires read permissions for your repository to execute the checkout on the runner machine.
-2. The **Vitest Coverage Report** action needs to write a comment to a pull request, and thus needs permissions to do so.
+1. La `actions/checkout` action requiere permisos de lectura para que su repositorio ejecute el pago en la máquina que lo ejecuta.
+2. El**Vitest Coverage Report** action necesita escribir un comentario en una solicitud de extracción y, por lo tanto, necesita permisos para hacerlo.
 
-By default, GitHub Actions workflows are executed with a restricted [set of default permissions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token), which can be extended as needed with the `permissions` keyword. This can be applied:
+De forma predeterminada, los flujos de trabajo de GitHub Actions se ejecutan con un [set of default permissions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token), que se pueden ampliar según sea necesario con la palabra clave `permissions`. Esto se puede aplicar:
 
-- At the root of the workflow to set this permission for **all** jobs within the workflow.
-- Within a [job](https://docs.github.com/en/actions/using-jobs) definition itself to specify permissions for that job only. This approach is recommended from a security perspective, as it provides the least required privileges to your workflows and jobs.
+- En la raíz del workflow para establecer este permiso para **all** los trabajos dentro del workflow.
+- Dentro de la propia definición  [job](https://docs.github.com/en/actions/using-jobs) para especificar permisos solo para ese trabajo. Este enfoque se recomienda desde una perspectiva de seguridad, ya que proporciona los privilegios menos necesarios para sus flujos de trabajo y trabajos.
 
-These permissions are applied to the `GITHUB_TOKEN`, which we will explore in more detail later.
+Estos permisos se aplican a `GITHUB_TOKEN`, que exploraremos con más detalle más adelante.
 
-For now, what you need to know is: as soon as you specify the `permissions` keyword, the default permissions no longer apply. This means you must explicitly configure all necessary permissions in the job or workflow. Let's do this in the next step.
+Por ahora, lo que necesitas saber es: tan pronto como especifica la palabra clave `permissions`, los permisos predeterminados ya no se aplican. Esto significa que debe configurar explícitamente todos los permisos necesarios en el trabajo o workflow. Hagamos esto en el siguiente paso.
 
-### 3.3 - Update the worklow
+### 3.3 - Actualizacion del workflow
 
-1. In the `main` branch, edit the CI workflow `.github/workflows/node.js.yml`
+1. En la rama `main`, edita el CI workflow `.github/workflows/node.js.yml`
 
-2. Add the `permissions` keyword with the following permissions into the job section:
+2. Agrega la palabra clave `permissions` con los siguientes permisos en la seccion del job:
 
     ```yml
     build:
@@ -168,7 +164,7 @@ For now, what you need to know is: as soon as you specify the `permissions` keyw
       # ... rest of the node.js.yml
     ```
 
-3. Add the following step in the `build` job section of your workflow, right after the `npm test` step:
+3. Agregue el siguiente paso en la seccion de `build` de su workflow, justo después del paso `npm test`:
 
     ```yml
         # ... rest of the node.js.yml
@@ -178,7 +174,7 @@ For now, what you need to know is: as soon as you specify the `permissions` keyw
             vite-config-path: vite.config.ts
     ```
 
-4. While you're at it, how about giving the job a better `name`?
+4. Mientras lo haces, ¿qué tal si mejora el trabajo `name`?
 
     ```yml
       jobs:
@@ -188,14 +184,14 @@ For now, what you need to know is: as soon as you specify the `permissions` keyw
       # ... rest of the node.js.yml
     ```
 
-5. Commit the `node.js.yml` file.
+5. Confirme el archivo `node.js.yml`.
 
-### 3.4 - Remove the matrix build strategy
+### 3.4 - Eliminar la estrategia de construcción de matrices
 
-As this is a frontend project, we don't need a matrix build strategy (which is more suited for backend projects that might be running on several Node.js versions). Removing the matrix build will also make the tests run only once.
+Como se trata de un proyecto frontend, no necesitamos una estrategia de creación de matrices (que es más adecuada para proyectos backend que pueden ejecutarse en varias versiones de Node.js). Eliminar la construcción de la matriz también hará que las pruebas se ejecuten solo una vez.
 
 <details>
-<summary>Try to remove the matrix build yourself and make the `actions/setup-node` action only run on version 16.x. Expand this section to see the solution.</summary>
+<summary>Intente eliminar la compilación de la matriz usted mismo y haga que la acción `actions/setup-node` solo se ejecute en la versión 16.x. Expanda esta sección para ver la solución.</summary>
 
 ```yml
 jobs:
@@ -221,94 +217,18 @@ jobs:
 
 </details>
 
-### 3.5 - Create a new pull request
+### 3.5 - Crear una nueva solicitud de extracción
 
-1. Go to the main page of the repository.
+1. Vaya a la página principal del repositorio.
 
-2. Click on [`./src/main.tsx`](../src/main.tsx), and edit the file (for instance, add a comment).
+2. Haga clic en [`./src/main.tsx`](../src/main.tsx), y edite el archivo (por ejemplo, agregue un comentario).
 
-3. Scroll down and click **Create a new branch for this commit and start a pull request**.
+3. Desplácese hacia abajo y haga clic en  **Create a new branch for this commit and start a pull request**.
 
-4. Click **Propose changes**.
+4. Haga clic en **Propose changes**.
 
-5. Click **Create pull request**.
+5. Haga clic en **Create pull request**.
 
-6. Wait for the CI workflow to run, and you will see a new comment in your pull request with the code coverage.
+6. Espere a que se ejecute el workflow de CI y verá un nuevo comentario en su solicitud de extracción con la
 ![PR Comment with a coverage report from vitest](./images/vitest-coverage-report.png)
 
-### 3.6. (Optional) - Enforce a certain coverage threshold with Branch Protection rules
-
-As you can see, the test coverage of this project is quite low. Sometimes, we want to enforce a certain level of coverage on a project. This means that we would not allow merging a PR if it reduces the coverage below a certain threshold.
-
-Let's try that out in this project:
-
-1. On the branch you created earlier, navigate to the [`vite.config.ts`](../vite.config.ts) file (located at the root level of the repository). Within the `test.coverage` section, edit it to establish some thresholds like this:
-
-    ```typescript
-    coverage: {
-      reporter: ["text", "json", "json-summary"],
-      lines: 100,
-      branches: 100,
-      functions: 100,
-      statements: 100
-    },
-    ```
-
-2. With the coverage thresholds set, our workflow will now fail after the next commit on the `npm test` step. However, since we still want to report the coverage, we need to run the `vitest-coverage-report-action` even if the previous step fails. We can do this by adding an `if: always()` statement to the step:
-
-      ```yml
-      - name: 'Report Coverage'
-        uses:  davelosert/vitest-coverage-report-action@v2
-        if: always()
-      ```
-
-3. Commit the changes and wait for the workflow to run.
-
-The `coverage` step should now fail. However, this does not yet prevent you from merging this PR. The merge button is still clickable:
-
-![GitHub checks with a failed action-workflow, but the merge button is still active](./images/merge-possible-with-failed-checks.png)
-
-To make this work, we need to set our target branch `main` as a protected branch and enforce that the `build` workflow be successful before a merge can be executed:
-
-1. Within your repository, go to **Settings** and then to **Branches**.
-
-2. Under **Branch protection rules**, click on **Add branch protection rule**.
-
-3. For the **Branch name pattern**, type `main`.
-
-4. Check the **Require status checks to pass before merging** box.
-
-5. In the search box that will appear, look for `Build and Test` (or whatever name you chose for the job in step 3.3) and select that job. *(Note that you might also see the jobs of the previous matrix builds with specific Node versions. You can ignore these.)*
-    ![Settings page with set up branch protection rule for main branch](./images/setting-up-branch-protection-rules.png)
-
-6. Scroll down and click `Create`.
-
-If you now return to the PR, you will see that the merge button is inactive and can't be clicked anymore.
-
-![GitHub checks with a failed action-workflow and merge button is inactive](./images/merge-prevented-with-failed-checks.png)
-
-As an administrator, you still have the option to force a merge. Regular users in your repo won't have this privilege.
-
-> **Note**
-> This will now prevent people from merging a branch to `main` not only if the coverage thresholds are not met, but also if the entire workflow fails for other reasons. For example, if the build isn't working anymore or if the tests are generally failing - which usually is a desired outcome.
-
-From here, you have two options:
-
-1. Write more tests (if you're into React 😉)
-2. Remove the (admittedly stringent) thresholds or lower them to make the workflow pass
-
-## Conclusion
-
-In this lab, you have learned how to:
-
-- 👍 Add a new workflow for CI.
-- 👍 Search for an action in the GitHub Marketplace.
-- 👍 Use the `permissions` directive.
-- 👍 Add a new action to your workflow.
-- 👍 (optionally) Prevent merges on failing tests or coverage thresholds using Branch Protection rules.
-
----
-
-Next:
-
-- **[Packaging](003-packaging.md)**
