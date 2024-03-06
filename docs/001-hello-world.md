@@ -14,11 +14,11 @@ Las acciones de trabajo de GitHub siempre se desencadenan por eventos que ocurre
 
 Puedes obtener la documentacion oficial en  [GitHub Actions and workflows components](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#the-components-of-github-actions)
 
-## 1 - Implement your first workflow with GitHub Actions
+## 1 - Implemente su primer Workflow con acciones de GitHub
 
-### 1.1 - Create a "Hello World" workflow
+### 1.1 - Crea un Workflow de "hola mundo"
 
-Suficiente hablando.¡Creemos nuestro primer Workflow de GitHub Actions!
+¡Creemos nuestro primer Workflow de GitHub Actions!
 
 1. En su repositorio, haga clic en la pestaña **Actions**. Se le ofrecerá una lista de sugerencias de Workflow. Sin embargo, para su primer Workflow, debe hacer clic en el enlace **Configuración de un Workflow** en la parte superior de la página.
 
@@ -48,7 +48,7 @@ Suficiente hablando.¡Creemos nuestro primer Workflow de GitHub Actions!
 
 Cambie el nombre del archivo a `hello.yml`, haga clic en **Commit Changes** y mergea directamente con la rama 'develop`.
 
-### 1.2 - Run the workflow manually
+### 1.2 - Ejecuta el workflow manualmente
 
 El Workflow que creó se activa por el evento 'Workflow_dispatch`, lo que significa que se puede ejecutar manualmente:
 
@@ -72,19 +72,19 @@ Felicitaciones, acabas de ejecutar tu primer Workflow de GitHub Actions.🥳
 >
 > Para más información, ver [Configuring a workflow](https://docs.github.com/en/actions/using-workflows) y [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions).
 
-## 1.3 - Analyze your workflow
+## 1.3 -Analiza tu workflow
 
 En la lista de ejecuciones de Workflow, haga clic en una de las ejecuciones para el Workflow "Hello World".Se le mostrará su trabajo único (`Salud.) En" trabajos "en el lado izquierdo de la página.Haga clic en ese trabajo para ver sus registros (puede ampliar los registros para un paso particular haciendo clic en él).
 
 La vista de ejecución de Workflow también le permite volver a ejecutar trabajos en caso de que ocurran problemas (botón en la parte superior derecha). Además, volver a ejecutar un trabajo le permite habilitar [debug logging](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging).
 
-## 2 - Use an action
+## 2 - Usar un action
 
 El uso de comandos BASH para automatizar los procesos es un requisito fundamental para cualquier sistema de CI/CD.Sin embargo, escribir scripts de shell puede volverse muy engorroso a medida que escala, y puede encontrarse reescribiendo la misma funcionalidad en diferentes proyectos.
 
 Afortunadamente, las acciones de GitHub ofrecen una manera mucho mejor de manejar la automatización: ¡usando **actions**! Un action es una unidad pequeña, compuesta y reutilizable de código de automatización que puede integrarse fácilmente en todos sus Workflow.
 
-### 2.1 - Add an action to your workflow
+### 2.1 - Añade una accion en tu workflow
 
 Comencemos utilizando una de las acciones más básicas pero comúnmente utilizadas para obtener una comprensión: la acción de 'actions/checkout`:
 
@@ -105,7 +105,7 @@ Comencemos utilizando una de las acciones más básicas pero comúnmente utiliza
 
 3. Confirme los cambios y active una nueva ejecución de Workflow.
 
-### 2.2 - Understand the power of Actions
+### 2.2 - Entendiendo el poder de los Actions
 
 Si examina los registros de Workflow y compara la salida de los dos comandos `ls -l`, notará que el`actions/checkout` La acción ha revisado la rama 'Main` de nuestro repositorio. Se logró sin requerir que especifique cualquier comando 'Git Clone` shell o cualquier referencia o configuración.
 
@@ -113,7 +113,7 @@ Esto es sólo la punta del iceberg.Hay miles de acciones aún más sofisticadas 
 
 Si está ansioso por explorar todas las acciones existentes creadas no solo por Github sino también por toda la comunidad de código abierto, diríjase a la [GitHub Marketplace](https://github.com/marketplace?category=&query=&type=actions&verification=).
 
-## 3 - Use Environment variables and context
+## 3 - Usar variables de entorno
 
 Puede usar variables de entorno para agregar información a la que desea hacer referencia en sus Workflow.Algunas variables de entorno incluso están predefinidas para que usted los use de inmediato (por ejemplo, la persona que activó la ejecución actual del Workflow).Para utilizar estos, edite el Workflow "Hello World" y agregue las siguientes líneas:
 
@@ -165,7 +165,7 @@ Comitea tus cambios y comience una nueva ejecución.Debería ver lo siguiente en
 
 Obtenga más información sobre las variables de entorno y las variables predeterminadas, ver [the official GitHub documentation on Environment variables](https://docs.github.com/en/actions/learn-github-actions/environment-variables).
 
-## 4 - Make additional events trigger your workflow
+## 4 - Hacer eventos adicionales a su workflow
 
 GitHub Acciones Los Workflow pueden ser activados por muchos tipos diferentes de eventos:
 
