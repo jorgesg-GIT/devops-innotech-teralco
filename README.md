@@ -1,40 +1,44 @@
-# GitHub Actions Workshop by GitHub
+# GitHub Actions Workshop
 
-> *Lift-off with GitHub Actions - it's not rocket-science (unless you use it for rockets).* 🚀
 
-Welcome to our GitHub Actions Workshop! It will teach you all the basics of GitHub Actions and beyond, so that you feel confident in automating your own workflows and deployments.
+¡Bienvenido a nuestro taller de GitHub Actions! Le enseñará todos los conceptos básicos de GitHub Actions y más, para que se sienta seguro al automatizar sus propios flujos de trabajo e implementaciones.
 
-Our goal is to make GitHub Actions as easy to you as floating in space!
+¡Nuestro objetivo es hacer que GitHub Actions sea tan fácil para ti como flotar en el espacio!
 
 ![GitHubs Octocat Mascot in a space suite floating above earth](docs/images/octonaut.jpg)
 
-Following this workshop, you will create a set of GitHub Action workflows in order to **test, release, secure** and **deploy** the **Rocketdex** 🚀 - an awesome React-Application that lets you view and collect all your favorite rockets!
+Después de este taller, crearás un conjunto de flujos de trabajo de GitHub Action para **test, release, secure** y **deploy** **Rocketdex** 🚀: una increíble aplicación React que te permite ver y recopilar. ¡Todos tus cohetes favoritos!
 
-You will learn how to
+Anprenderás como:
 
-- run your **first GitHub Action**
-- use [**the Marketplace**](https://github.com/marketplace)
-- create a complete and secure **CI pipeline** from scratch
-- deploy your application to [Microsoft Azure](https://azure.com/) (or another Cloud Provider of your choice)
+- Ejecutar tu **first GitHub Action**
+- Usar [**the Marketplace**](https://github.com/marketplace)
+- Crear y completar una segura **CI pipeline** desde cero.
+- Desplegar tu aplicacion en  [Microsoft Azure](https://azure.com/)
 
 ## Getting Started 🚀
 
-Anything you need for this workshop is contained within this template-repository - so the first thing you need to do is get a copy of it:
+Cualquier cosa que necesite para este taller está contenida dentro de este repositorio de plantilla, por lo que lo primero que debe hacer es obtener una copia:
 
-1. On the top right, click the green `Use this template` button
-    ![Image of the green button saying Use this Repo](./docs/images/setsup_use-this-template.png)
-2. Give your new repository any name you like (for example `<your-name>-gh-actions-workshop`)
-3. Decide for an owner of the new repository (when in doubt, use your private GitHub account)
-4. Make it a `Public` repository so you don't use up any of your private action minutes
-5. Click `Create repository from template`
+1. En la parte superior derecha, haga clic en el botón verde "Use esta plantilla"
+    
+![Image of the green button saying Use this Repo](./docs/images/setsup_use-this-template.png)
+
+2. Dé a su nuevo repositorio cualquier nombre que desee.
+
+3. Decida un propietario del nuevo repositorio (en caso de duda, use su cuenta privada de GitHub)
+
+4. Haz que sea un repositorio 'público' para que no uses ninguno de tus minutos de acción privada
+
+5. Haga clic en `Crear repositorio desde plantilla '
 
 ![Image of Repository Creation Screen with settings as explained above](docs/images/setup_create-repo.png)
 
-In your own repository, you now can safely create and change all files and run actions workflows according to the instructions shared by your trainer or by following our [self-serve documents](#workshop-parts-) below.
+En su propio repositorio, ahora puede crear y cambiar de forma segura todos los archivos y ejecutar flujos de trabajo de acciones de acuerdo con las instrucciones compartidas.
 
 ## Workshop Parts 📚
 
-These are the self-serve documents you can follow to complete this workshop. If you are doing this with a trainer, these are your reference materials:
+Estos son los pasos a seguir:
 
 1. **[Hello World - Run your first Action](./docs/001-hello-world.md)**
 2. **[Basics of Continous Integration - Build & Test](./docs/002-basics-of-ci-with-actions.md)**
@@ -42,34 +46,3 @@ These are the self-serve documents you can follow to complete this workshop. If 
 4. **[Security with Actions](./docs/004-security.md)**
 5. **[Lift-off - Deployment with Actions](./docs/005-deployment.md)**
 
-## Rocketdex  Application Setup
-
-The **Rocketdex** application is a [React](https://reactjs.org/)-Application build with [vite](https://vitejs.dev/) and tested with [vitest](https://vitest.dev/).
-
-You can simply clone it and install all dependencies using:
-
-```sh
-npm install
-```
-
-After that, you can start it in development mode to have a look at it:
-
-```sh
-npm run dev
-```
-
-### Other useful commands
-
-| Description                                               | Command         |
-| --------------------------------------------------------- | --------------- |
-| Build and Bundle the App using [vite](https://vitejs.dev) | `npm run build` |
-| Run Unit Tests with [vitest](https://vitest.dev/)         | `npm run test`  |
-| Lint the Code with [ESLint](https://eslint.org/)          | `npm run lint`  |
-
-## Contributions
-
-Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
-
-## Licensing
-
-This repo is licensed under MIT for code and CC BY-SA 4.0 for documentation (`docs/` folder and the `README.md.`). See the [LICENSE](./LICENSE) File for more information.
