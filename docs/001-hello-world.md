@@ -165,6 +165,9 @@ Comitea tus cambios y comience una nueva ejecución.Debería ver lo siguiente en
 
 Obtenga más información sobre las variables de entorno y las variables predeterminadas, ver [the official GitHub documentation on Environment variables](https://docs.github.com/en/actions/learn-github-actions/environment-variables).
 
+
+## EJERCICIO: Configuracion de inputs  para meter variables de entorno, ver [Documentación](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs)
+
 ## 4 - Hacer eventos adicionales a su workflow
 
 GitHub Acciones Los Workflow pueden ser activados por muchos tipos diferentes de eventos:
