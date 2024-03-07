@@ -1,4 +1,4 @@
-# Part 3 - 📦 Packaging
+# Parte 3 - 📦 Packaging
 
 En el laboratorio anterior, utilizó Actions de GitHub para crear un workflow de integración continua (CI).El siguiente paso en un proceso clásico de entrega continua es**package and release** su aplicación.
 
