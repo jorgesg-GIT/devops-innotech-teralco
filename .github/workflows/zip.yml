@@ -12,4 +12,5 @@ jobs:
           args: zip -qq -r repo.zip .
       - uses: actions/upload-artifact@v2
         with:
-          name: repo.zip
+          name: artifact-repo.zip
+          path: repo.zip
