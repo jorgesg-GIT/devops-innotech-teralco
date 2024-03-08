@@ -24,7 +24,9 @@ on:
 jobs:
   print-tag:
     runs-on: ubuntu-latest
-    if:  ${{ inputs.output }} 
     steps:
       - name: Print the input tag to STDOUT
-        run: echo  El lenguaje de programacion preferido de ${{ inputs.nombre }} es  ${{ inputs.code }} 
+        run: echo  El lenguaje de programacion preferido de ${{ inputs.nombre }} es  ${{ inputs.code }}
+        if:  ${{ inputs.output }} 
+      - name: no STDOUT
+        run: echo No se ha requerido el campoo output.
