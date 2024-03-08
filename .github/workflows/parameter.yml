@@ -30,3 +30,4 @@ jobs:
         if:  ${{ inputs.output }} 
       - name: no STDOUT
         run: echo No se ha requerido el campoo output.
+        if: ${{ !inputs.output }}
