@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: 'Lenguaje de codigo preferido'
+        required: true
+        default: 'Cobol'
+        type: choice
+        options:
+          - Python
+          - JS
+          - Java
+          - c#
+          - Cobol
+      nombre:
+        description: 'Nombre'
+        required: true
+        type: string
+      output:
+        description: 'Quieres que se imprima en pantalla?'
+        required: true
+        type: boolean
+
+jobs:
+  print-tag:
+    runs-on: ubuntu-latest
+    if:  ${{ inputs.output }} 
+    steps:
+      - name: Print the input tag to STDOUT
+        run: echo  El lenguaje de programacion preferido de ${{ inputs.nombre }} es  ${{ inputs.code }} 
