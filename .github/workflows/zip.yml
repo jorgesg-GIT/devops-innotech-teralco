@@ -1,0 +1,15 @@
+name: zip
+on:
+  push:
+  pull_request:
+jobs:
+  artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r repo.zip .
+      - uses: actions/upload-artifact@v2
+        with:
+          name: repo.zip
