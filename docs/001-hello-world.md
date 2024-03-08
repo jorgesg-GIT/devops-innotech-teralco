@@ -192,3 +192,7 @@ Ahora cree un problema en su repositorio y verifique la pestaña Acciones.Deber�
 ![image](https://user-images.githubusercontent.com/3329307/171652425-14a1ce9f-06c0-4b24-b937-7330c76c735f.png)
 
 
+## EJERCICIO: Vamos a crear un nuevo workflow en el que tendremos  que parametrizar variables de entorno para que en el inicio del Workflow nos pida unas entradas que luego usaremos en el step. Se deberá utuilizar al menos tres parametros, choice, string y boolean  [Documentación](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs)
+
+
+
