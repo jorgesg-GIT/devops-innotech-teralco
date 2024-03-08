@@ -14,3 +14,5 @@ jobs:
         with:
           name: artifact-repo.zip
           path: repo.zip
+      - name: name repo
+        run: echo ${{ github.run_id }}
