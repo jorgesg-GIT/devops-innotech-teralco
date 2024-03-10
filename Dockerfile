@@ -1,6 +1,9 @@
 # Build container for the frontend bundle
 FROM node:16 as build
 
+ARG name
+RUN echo $name
+
 WORKDIR /usr/src/app
 
 COPY . .
