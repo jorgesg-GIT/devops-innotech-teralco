@@ -33,9 +33,11 @@ jobs:
       - name: Descargar artefacto
         uses: actions/download-artifact@v4
         with:
+          name: artefacto-${{github.actor}}
           path: artefacto.zip
       - name: Unzip artefacto      
         run: | 
+          ls
           unzip artefacto.zip
           ls -R
           cat artefacto/hello.txt
