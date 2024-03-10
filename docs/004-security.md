@@ -295,9 +295,10 @@ Después del CodeQL workflow ha terminado, navegar al pull request e inspecciona
     ![Captura de pantalla de la página de alerta de escaneo de código](images/004/vulnerability_result_page.png)
 
 4. Bien, ¡entonces es hora de arreglar esto!Debe tener toda la información que necesita para abordar el problema por su cuenta.Sin embargo, si necesita una pista, puede hacer clic en el botón de abajo para revelar la solución.
+
    <details>
    <summary>
-  Cómo arreglar la vulnerabilidad
+      Cómo arreglar la vulnerabilidad
    </summary>
 
    Modificar la línea 10 en el archivo [`src/components/OctoLink.tsx`](../src/components/OctoLink.tsx#10) A lo siguiente, luego cometa y presiona tus cambios:
