@@ -38,7 +38,7 @@ jobs:
       - name: Unzip artefacto      
         run: | 
           ls
-          unzip artefacto.zip
+          unzip artefacto.zip -d artefacto
           ls -R
           cat artefacto/hello.txt
       - name: Send mail
