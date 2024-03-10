@@ -232,4 +232,4 @@ jobs:
 6. Espere a que se ejecute el workflow de CI y verá un nuevo comentario en su solicitud de extracción con la
 ![PR Comment with a coverage report from vitest](./images/vitest-coverage-report.png)
 
-## EJERCICIO: Vamos a crear un nuevo job de nombre Artifact en el que tendremos que crear un zip del repositorio y subirlo como artefacto. [GitHub Marketplace](https://github.com/marketplace)
+## EJERCICIO: Vamos a crear un nuevo job de nombre Artifact-zip con el Dockerfile en el que tendremos que crear un zip del repositorio y subirlo como artefacto. [GitHub Marketplace](https://github.com/marketplace)
