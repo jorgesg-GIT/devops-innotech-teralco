@@ -17,13 +17,13 @@ jobs:
         run: |
           mkdir -p artefacto
           echo "Hello world!" > artefacto/hello.txt
-      - name: Create ZIP
-        run: zip -r artefacto.zip artefacto
+      #- name: Create ZIP
+      #  run: zip -r artefacto.zip artefacto
         
       - uses: actions/upload-artifact@v4
         with:
           name: artefacto-${{github.actor}}
-          path: artefacto.zip
+          path: artefacto
 
   cd:
     needs: [ci]
@@ -34,11 +34,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: artefacto-${{github.actor}}
-          path: artefacto.zip
-      - name: Unzip artefacto      
+          path: artefacto
+      - name: Cat artefacto      
         run: | 
-          ls
-          unzip artefacto.zip -d artefacto
           ls -R
           cat artefacto/hello.txt
       - name: Send mail
