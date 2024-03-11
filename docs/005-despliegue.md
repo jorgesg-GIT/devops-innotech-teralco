@@ -9,39 +9,18 @@ Aprenderá cómo autenticarse fácilmente en Azure mediante una acción, utiliza
 
 ## 1 - Variables de acciones y secretos
 
-### 1.1 Crear una nueva variable de Acciones
+### 1 Crear una nueva variable de Acciones
 
 Ya ha aprendido a utilizar variables dentro de un flujo de trabajo. Sin embargo, hasta ahora, solo ha utilizado variables proporcionadas por el propio GitHub. Ahora, aprendamos cómo agregar sus propias variables (y secretos) para definir configuraciones específicas del repositorio y otros valores que quizás no desee codificar en sus archivos de flujo de trabajo.
 
-1. Navegue hasta la Configuración de su repositorio , expanda Secretos y variables y seleccione Acciones .
-    ![Navigate to Actions secrets](./images/005/issue-ops-005-navigate-secrets.png)
 
-2. Haga una pausa aquí y observe que ya hay algunos secretos de organización definidos: `AZ_CLIENT_ID`, `AZ_SECRET`, `AZ_SUBSCRIPTION_ID`, y `AZ_TENANT_ID`. Estos secretos los creó el administrador de su organización, lo que le permite autenticarse en Azure con una entidad de servicio (también conocida como "usuario de máquina") para ejecutar su implementación. Puede (y accederá) a estos secretos desde sus archivos de flujo de trabajo en el `secrets` (e.g., `secrets.AZ_CLIENT_ID`).  A continuación se proporcionan más detalles sobre los alcances de los secretos y las variables.
-
-3. Navegue a la pestaña Variables y haga clic en Nueva variable de repositorio .
-
-    ![Click on New repository variable](images/005/issue-ops-006-navigate-variables.png)
-
-4. Asigne un nombre a la variable `AZ_APP_NAME`y proporcione un valor de su elección, preferiblemente el nombre de su repositorio (dado que el nombre de la aplicación debe ser único en todos los servicios web de Azure, elija algo distintivo). Haga clic en Agregar variable una vez terminado.
+1.1. Asigne un nombre a la variable `AZ_APP_NAME`y proporcione un valor de su elección, preferiblemente el nombre de su repositorio (dado que el nombre de la aplicación debe ser único en todos los servicios web de Azure, elija algo distintivo). Haga clic en Agregar variable una vez terminado.
     ![Create a new variable](./images/005/issue-ops-007-create-az-app-name.png)
 
 Ahora, ha creado una variable a la que se podrá acceder desde todos los flujos de trabajo dentro de este repositorio como ${{ vars.APP_NAME }}. Haremos uso de esto en nuestro flujo de trabajo de implementación.
 
 
-### 1.2 Alcances de secretos y variables
 
-Los secretos y las variables se pueden definir en tres ámbitos distintos:
-
-1. Entorno : los secretos y las variables dentro de este alcance solo son accesibles para trabajos que especifican un archivo environment. Los entornos se pueden proteger, lo que convierte a este osciloscopio en una excelente opción para restringir el uso de estas variables. Además, puede hacer que los flujos de trabajo sean versátiles para diversos entornos, como objetivos de implementación, al reutilizar nombres de variables idénticos. Profundizará en los entornos en este laboratorio.
-
-2. Repositorio : los secretos y las variables en este ámbito están disponibles en todos los flujos de trabajo del repositorio. Son adecuados para secretos generales y variables que desea utilizar o reutilizar en todo el repositorio.
-
-3. Organización : se puede acceder a los secretos y variables dentro de este alcance en todos los flujos de trabajo en todos los repositorios de la organización. Esto es especialmente beneficioso para definir secretos y variables utilizadas en múltiples repositorios, como una cuenta de implementación compartida, como se vio en este taller.
-
-Una vez que comienza un trabajo, todos los ámbitos se fusionan en el namespace de `secrets` para los secretos y el `vars` para las variables.
-
-Si dos variables de diferentes ámbitos comparten el mismo nombre, se utiliza la del ámbito con mayor precedencia. El orden de prioridad es: **Environment** > **Repository** > **Organization**.
-Por ejemplo, si tiene un secreto a nivel de organización llamado SECRETcon el valor Organizationy otro con el mismo nombre en su repositorio con el valor Repository, usarlo ${{ secrets.SECRET }}en su flujo de trabajo generará el valor Repository.
 
 ## 2- amplíe el flujo de trabajo para implementarlo en la etapa de preparación
 
@@ -103,7 +82,7 @@ Abre el `node.js.yml`.  Inmediatamente después del `package-and-publish` job,  
       - name: Log in to Azure using credentials
         uses: azure/login@v1
         with:
-          creds: '{"clientId":"${{ secrets.AZ_CLIENT_ID }}","clientSecret":"${{ secrets.AZ_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZ_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZ_TENANT_ID }}"}'
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy resources
         uses: azure/arm-deploy@v1
@@ -111,7 +90,7 @@ Abre el `node.js.yml`.  Inmediatamente después del `package-and-publish` job,  
         with:
           scope: subscription
           region: westeurope
-          deploymentName: ${{ vars.APP_NAME }}-deployment
+          deploymentName: ${{ vars.AZ_APP_NAME }}-deployment
           template: ./infra/web-app/main.bicep
           parameters: "containerImage=${{ needs.package-and-publish.outputs.container }} actor=${{ github.actor }} appName=aw-${{ vars.APP_NAME }} repository=${{ github.repository }}"
 ```
