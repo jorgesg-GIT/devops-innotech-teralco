@@ -43,6 +43,6 @@ Estos son los pasos a seguir:
 1. **[Hello World](./docs/001-hello-world.md)**
 2. **[Conceptos básicos de CI con Actions](./docs/002-ConceptosCIconActions.md)**
 3. **[Empaquetado y release de la App](./docs/003-packaging.md)**
-4. **[Seguridad con Actions](./docs/004-security.md)**
+4. **[Seguridad con Actions](./docs/004-seguridad.md)**
 5. **[Despliegue con Actions](./docs/005-despliegue.md)**
 
