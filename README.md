@@ -40,9 +40,9 @@ En su propio repositorio, ahora puede crear y cambiar de forma segura todos los 
 
 Estos son los pasos a seguir:
 
-1. **[Hello World - Run your first Action](./docs/001-hello-world.md)**
-2. **[Basics of Continous Integration - Build & Test](./docs/002-basics-of-ci-with-actions.md)**
-3. **[Package and release your Application](./docs/003-packaging.md)**
-4. **[Security with Actions](./docs/004-security.md)**
-5. **[Lift-off - Deployment with Actions](./docs/005-deployment.md)**
+1. **[Hello World](./docs/001-hello-world.md)**
+2. **[Conceptos básicos de CI con Actions](./docs/002-ConceptosCIconActions.md)**
+3. **[Empaquetado y release de la App](./docs/003-packaging.md)**
+4. **[Seguridad con Actions](./docs/004-security.md)**
+5. **[Despliegue con Actions](./docs/005-despliegue.md)**
 

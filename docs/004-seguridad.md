@@ -1,4 +1,4 @@
-# Part 4 - Security
+# Parte 4 - Seguridad
 
 En el laboratorio anterior, empaquetó su aplicación y ahora está casi listo para la implementación.Pero primero, debemos asegurarnos de no introducir ningún riesgo de seguridad para nuestra infraestructura de producción con nuestros cambios.
 

@@ -1,4 +1,4 @@
-# Part 1 - Hello World
+# Parte 1 - Hello World
 
 GitHub Actions es una plataforma continua de integración y implementación continua (CI/CD) que le permite automatizar su construcción, prueba e implementación de tuberías.Le brinda la capacidad de crear Workflow que creen y prueben cada solicitud de extracción a su repositorio, y luego implementa automáticamente las solicitudes de extracción de extracción de fusiones para la producción.
 
